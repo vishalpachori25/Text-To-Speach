@@ -8,38 +8,63 @@
     tools:context="example.vishalpachori.texttospeechkotlin.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-        <EditText
-            android:id="@+id/edittext_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10" >
-            <requestFocus />
-        </EditText>
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button_speak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Speak" />
-        <ImageButton
-            android:id="@+id/btn_speak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/ico_mic" />
+                    <LinearLayout
+                        android:id="@+id/tab1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/tap_on_mic"
-            android:id="@+id/tv_speech"
-            android:textSize="15dp"/>
-    </LinearLayout>
+                        <EditText
+                            android:id="@+id/edittext_input"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine" >
 
+                            <requestFocus />
+                        </EditText>
+
+                        <Button
+                            android:id="@+id/button_speak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Speak" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tab2"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <ImageButton
+                            android:id="@+id/btn_speak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ico_mic" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/tap_on_mic"
+                            android:id="@+id/tv_speech"
+                            android:ems="10"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine" >
+
+                            <requestFocus />
+                        </EditText>
+                    </LinearLayout>
+                </FrameLayout>
 </android.support.constraint.ConstraintLayout>

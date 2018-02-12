@@ -1,14 +1,15 @@
 package example.vishalpachori.texttospeechkotlin
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.speech.tts.TextToSpeech
+import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -19,19 +20,53 @@ class MainActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
     private var buttonSpeak: Button? = null
     private var editText: EditText? = null
-    private var txtSpeechInput:TextView? = null
+    private var txtSpeechInput:EditText? = null
 	private var btn_Speak: ImageButton?=null
 	private var REQ_CODE: Int = 100
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+
 //        fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
 //        }
+
+        val tab1 =  findViewById<View>(R.id.tab1) as LinearLayout
+        val tab2 =  findViewById<View>(R.id.tab2) as LinearLayout
+
+
+        val tabLayout = findViewById<View>(R.id.tabs) as TabLayout
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.text_to_speech))
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.speech_to_text))
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                 }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when ( tab!!.position){
+                    0 -> {
+                        tab1.visibility = View.VISIBLE
+                        tab2.visibility = View.GONE
+                    }
+                    1 -> {
+
+                        tab1.visibility = View.GONE
+                        tab2.visibility = View.VISIBLE
+                    }
+                }
+              }
+
+        })
+
 
         txtSpeechInput =  this.tv_speech
 		btn_Speak =  this.btn_speak
@@ -77,7 +112,8 @@ class MainActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
 
 
                     val result = data!!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                    txtSpeechInput!!.text = result[0]
+                    txtSpeechInput!!.text.clear()
+                    txtSpeechInput!!.text.append(result[0])
                 }
 
             }
@@ -132,3 +168,4 @@ class MainActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
         }
     }
 }
+
